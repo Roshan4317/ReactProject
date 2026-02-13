@@ -15,7 +15,7 @@ export default function CountryDetails() {
       .then((res) => res.json())
       .then(([data]) => setSingleCountry(data))
       .catch(() => setSingleCountry({ error: "Please Enter a valid Country" }));
-  }, []);
+  }, [country]);
 
   if (singleCountry?.error) {
     return <Error message={singleCountry.error} />;
@@ -91,7 +91,9 @@ export default function CountryDetails() {
 
                   {borders.length > 0
                     ? borders.map((bo) => (
-                        <Link className="box-shadow p-1">{bo}</Link>
+                        <Link className="box-shadow p-1" to={`/${bo}`}>
+                          {bo}
+                        </Link>
                       ))
                     : "No Borders"}
                 </h1>
